@@ -1,0 +1,6 @@
+ID;Native Name;English Name;Latin Name;Family;Consumable Part;Lifetime;Origin;Nutrient Need;Water Need;Sunlight Need;Plants/m2;Seasons at same place
+PL0001;Cékla Ditroit;Beetroot Ditroit;Beta vulgaris var. conditiva;Roots;Roots;2;Mediterranean Sea;Low;Middle;Low;100;2
+PL0002;Sárgarépa Nantes;Carrot Nantes;Daucus carota subsp. sativus;Roots;Roots;2;Central Asia;Low;Middle;Middle;100;3
+PL0003;Cukkini Goldena;Courgette Goldena;Cucurbita pepo var. giromontia;Cucurbita;Crop;1;Andes;High;High;High;1.5;2
+PL0004;Paradicsom San Marzano;Tomato San Marzano;Solanum lycopersicum;Nightshade;Crop;1;South America;High;Middle;High;6;1
+PL0005;Bazsalikom;Basil;Ocimum basilicum;Lamiaceae;Leave;1;India;Middle;Low;High;8;3
