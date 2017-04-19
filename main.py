@@ -8,15 +8,25 @@ main_path = os.path.dirname(os.path.abspath(__file__))
 # Store module
 fieldview = SourceFileLoader("fieldview", main_path + "/fieldview/field.py").load_module()
 
+def choose():
+    inputs = ui.get_inputs(["Please enter a number"], "")
+    option = inputs[0]
+    if option == "1":
+        data_manager.start_module()
+    elif option == "2":
+        fieldview.start_module()
+    elif option == "3":
+        tool_manager.start_module()
+    elif option == "0":
+        sys.exit(0)
+    else:
+        raise KeyError("There is no such option.")
 
 def handle_menu():
     os.system("clear")
-    options = ["Store manager",
-               "Human resources manager",
-               "Tool manager",
-               "Accounting manager",
-               "Selling manager",
-               "Customer Relationship Management (CRM)"]
+    options = ["Field View",
+               "Plants manager",
+               "Disease manager"]
 
     ui.print_menu("Main menu", options, "Exit program")
 
