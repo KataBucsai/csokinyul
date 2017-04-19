@@ -1,0 +1,11 @@
+ID(Plant+Disease);Connection
+PL0001+DI0001;Neutral
+PL0002+DI0001;Neutral
+PL0003+DI0001;Susceptible
+PL0004+DI0001;Unprotected
+PL0005+DI0001;Neutral
+PL0001+DI0002;Neutral
+PL0002+DI0002;Neutral
+PL0003+DI0002;Unprotected
+PL0004+DI0002;Neutral
+PL0005+DI0002;Unprotected
