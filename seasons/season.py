@@ -8,16 +8,22 @@
 
 
 # importing everything you need
+import sys
 import os
-import main
 from importlib.machinery import SourceFileLoader
 current_file_path = os.path.dirname(os.path.abspath(__file__))
 # User interface module
 ui = SourceFileLoader("ui", current_file_path + "/../ui.py").load_module()
-# data manager module
-data_manager = SourceFileLoader("data_manager", current_file_path + "/../data_manager.py").load_module()
-# common module
-field = SourceFileLoader("common", current_file_path + "/../field/field.py").load_module()
+# Fieldview module
+field = SourceFileLoader("field", current_file_path + "/../fieldview/field.py").load_module()
+# Mai module
+main = SourceFileLoader("main", current_file_path + "/../main.py").load_module() 
+# General module
+general = SourceFileLoader("general", current_file_path + "/../general.py").load_module() 
+# Data_read_write module
+data_read_write = SourceFileLoader("data_read_write", current_file_path + "/../data_read_write.py").load_module()
+# Menu module
+menu = SourceFileLoader("menu", current_file_path + "/../menu.py").load_module()
 
 
 # start this module by a module menu like the main menu
@@ -33,7 +39,7 @@ def start_module(season):
     if season == "new":
         # future: export actual season to history and clear it 
         actual_table = new_season(actual_table)
-        data_manager.write_datatable_to_file("actualseason.csv", actual_table)
+        data_read_write.write_datatable_to_file("actualseason.csv", actual_table)
     if actual_table or season == "actual":
         actual_table = actual_season(actual_table)
 
@@ -63,7 +69,7 @@ def get_field_plant():
     part_field = ui.get_inputs(["Field number", "Plant name"], "Select a field number and a plant")
     if part_field == "1":
         part_field.append("F2+F3")
-    elif part_field == "2:
+    elif part_field == "2":
         part_field.append("F1+F4")
     elif part_field == "3":
         part_field.append("F1+F4")

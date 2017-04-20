@@ -10,16 +10,22 @@
 
 
 # importing everything you need
+import sys
 import os
-import main
 from importlib.machinery import SourceFileLoader
 current_file_path = os.path.dirname(os.path.abspath(__file__))
 # User interface module
 ui = SourceFileLoader("ui", current_file_path + "/../ui.py").load_module()
-# data manager module
-data_manager = SourceFileLoader("data_manager", current_file_path + "/../data_manager.py").load_module()
-# common module
-common = SourceFileLoader("common", current_file_path + "/../common.py").load_module()
+# Season module
+season = SourceFileLoader("season", current_file_path + "/../seasons/season.py").load_module()
+# Mai module
+main = SourceFileLoader("main", current_file_path + "/../main.py").load_module() 
+# General module
+general = SourceFileLoader("general", current_file_path + "/../general.py").load_module() 
+# Data_read_write module
+data_read_write = SourceFileLoader("data_read_write", current_file_path + "/../data_read_write.py").load_module()
+# Menu module
+menu = SourceFileLoader("menu", current_file_path + "/../menu.py").load_module()
 
 
 # start this module by a module menu like the main menu
