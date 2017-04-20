@@ -17,9 +17,9 @@ def print_table(table, title_list):
 
 # This function needs to generate outputs like this:
 # Main menu:
-# (1) Field View
-# (2) Plants manager
-# (3) Disease manager
+# (1) Actual Season
+# (2) New Season
+# (3) Plants
 # (0) Exit program
 #
 # @title: string - title of the menu
@@ -57,6 +57,22 @@ def get_inputs(list_labels, title):
         for items in list_labels:
             inputs.append(input(items + ": "))
         return inputs
+
+
+# This function needs to print outputs like this:
+#
+# @table: list of lists - the table to print out
+# @title_list: list of strings - the head of the table
+def print_field(table, title_list):
+    table_items = [title_list]
+    for item in table:
+        table_items.append(item)
+    table = AsciiTable(table_items)
+    table.inner_heading_row_border = True
+    table.inner_row_border = True
+    table.padding_left = 10
+    table.padding_right = 10
+    print(table.table)
 
 
 # This function needs to print an error message. (example: Error: @message)
