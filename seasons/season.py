@@ -55,7 +55,7 @@ def new_season(season_table):
         field_size = ui.get_inputs(["Field size (m)"], "Insert your Farm size")
         field.append(["".join([date for date in season_date]), ",".join([str(int(field_size[0]) ** 2), field_size[0]])])
         for i in range(4):
-            field.append([0, 0, 0])
+            field.append(["0", "0", "0"])
     ui.print_field(field, 2, season_date[0])
     return field
 
