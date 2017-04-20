@@ -27,10 +27,12 @@ data_read_write = SourceFileLoader("data_read_write", current_file_path + "/../d
 #
 def start_module(season):
     actualseason_file_name = current_file_path + "/actualseason.csv"
-    actual_table = data_read_write.get_datatable_from_file(actualseason_file_name)
+    actual_table = data_read_write.get_datatable_from_file("actualseason.csv")
 
     if not actual_table:  # first season here
         actual_table = new_season(actual_table)
+        data_read_write.write_datatable_to_file("actualseason.csv", actual_table)
+        season = "actual"
     while actual_table:
         if season == "new":
             # future: export actual season to history and clear it
@@ -47,13 +49,13 @@ def start_module(season):
 # @season list of list
 def new_season(season_table):
     field = []
-    season_date = ""
+    season_date = season_table[0] if season_table else []
     field_size = ""
     if not season_table:
         ui.print_result("", "This is your first season")
         season_date = ui.get_inputs(["Year", "Month"], "What is the year and the month of your first season?")
         field_size = ui.get_inputs(["Field size (m)"], "Insert your Farm size")
-        field.append(["".join([date for date in season_date]), ",".join([str(int(field_size[0]) ** 2), field_size[0]])])
+        field.append(["".join([date for date in season_date]), ",".join([str(int(field_size[0])**2), field_size[0]])])
         for i in range(4):
             field.append(["0", str(i+1), "0"])
     ui.print_field(field, 2, season_date[0])
@@ -62,12 +64,14 @@ def new_season(season_table):
 
 def actual_season(season_table):
     while True:
-        field_plant = get_field_plant()
+        ui.print_field(season_table, 2, season_table[0][0])
+        field_plant = [get_field(), get_plant()]
         return 1
 
 
-def get_field_plant():
-    part_field = ui.get_inputs(["Field number", "Plant name"], "Select a field number and a plant")
+def get_field():
+    part_field = []
+    part_field.append(ui.get_inputs(["Field number"], "Select a field number"))
     if part_field == "1":
         part_field.append("F2+F3")
     elif part_field == "2":
@@ -76,6 +80,13 @@ def get_field_plant():
         part_field.append("F1+F4")
     else:
         part_field.append("F2+F3")
+    return part_field
+
+
+def get_plant():
+    plants_table = data_read_write.get_datatable_from_file("data/plants.csv")
+    ui.print_table(plants_table)
+    part_field = ui.get_inputs(["Plant name"], "Select a plant")
     return part_field
 
 

@@ -9,10 +9,9 @@ main_path = os.path.dirname(os.path.abspath(__file__))
 # @table: list of lists of strings
 def get_datatable_from_file(file_name):
     try:
-        filerout = (main_path + '/' + file_name)
-        if os.stat(filerout).st_size > 0:
+        if os.stat(file_name).st_size > 0:
             datatable = []
-            with open(filerout, 'r') as datafile:
+            with open(file_name, 'r') as datafile:
                 datafile_reader = csv.reader(datafile, delimiter=';', skipinitialspace=True, lineterminator='\n')
                 for row in datafile_reader:
                     datatable.append(row)

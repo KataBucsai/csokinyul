@@ -10,8 +10,7 @@ general = SourceFileLoader("general", current_file_path + "/general.py").load_mo
 #
 # @table: list of lists - the table to print out
 # @title_list: list of strings - the head of the table
-def print_table(table, title_list):
-    table_items = [title_list]
+def print_table(table):
     for item in table:
         table_items.append(item)
     table = AsciiTable(table_items)
@@ -45,7 +44,6 @@ def print_menu(title, list_options, exit_message):  # ready to use
 def print_result(result, label):
     print("\n" + label)
     print(result)
-    print("\n")
 
     
 # This function gets a list of inputs from the user by the terminal
