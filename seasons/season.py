@@ -19,7 +19,7 @@ current_file_path = os.path.dirname(os.path.abspath(__file__))
 # User interface module
 ui = SourceFileLoader("ui", current_file_path + "/../ui.py").load_module()
 # Fieldview module
-field = SourceFileLoader("field", current_file_path + "/../fieldview/field.py").load_module()
+# field = SourceFileLoader("field", current_file_path + "/../fieldview/field.py").load_module()
 # Data_read_write module
 data_read_write = SourceFileLoader("data_read_write", current_file_path + "/../data_read_write.py").load_module()
 
@@ -29,7 +29,7 @@ data_read_write = SourceFileLoader("data_read_write", current_file_path + "/../d
 #
 # @season: string with two state "new" or "actual"
 def start_module(season):
-    actualseason_file_name = current_file_path + "/actualseason.csv"
+    # actualseason_file_name = current_file_path + "/actualseason.csv"
     actual_table = data_read_write.get_datatable_from_file("actualseason.csv")
 
     if not actual_table:  # first season here
@@ -43,8 +43,7 @@ def start_module(season):
             data_read_write.write_datatable_to_file("actualseason.csv", actual_table)
         elif actual_table or season == "actual":
             actual_table = actual_season(actual_table)
-        else:
-            main.main()
+        main.main()
 
 
 # handle new season
@@ -60,7 +59,7 @@ def new_season(season_table):
         field_size = ui.get_inputs(["Field size (m)"], "Insert your Farm size")
         field.append(["".join([date for date in season_date]), ",".join([str(int(field_size[0])**2), field_size[0]])])
         for i in range(4):
-            field.append(['0', str(i+1), '0'])
+            field.append([str(i+1), str(i+1), '0'])
     ui.print_field(field, 2, season_date[0])
     return field
 
@@ -69,17 +68,24 @@ def new_season(season_table):
 #
 # @season_table list of list
 def actual_season(season_table):
+    table = season_table
     while True:
-        ui.print_field(season_table, 2, season_table[0][0])
-        field_plant = [get_field(), get_plant()]
+        ui.print_field(table, 2, table[0][0])
+        field_plant = get_field()
+        field_plant.insert(0, get_plant())
+        for i, part in enumerate(table):
+            if part[1] == field_plant[1]:
+                table[i] = field_plant
+        ui.print_field(table, 2, table[0][0])
         planting_finished = ui.get_inputs(["Yes(Y) or No(N)"], "Are you done with the planting?")
-        if planting_finished == 'Y' or planting_finished == 'y'
+        if planting_finished == 'Y' or planting_finished == 'y':
+            return table
 
 
 # setting up field part atributes
 #
 def get_field():
-    part_field = ui.get_inputs(["Field number"], "Select a field number")
+    part_field = [ui.get_inputs(["Field number"], "Select a field number")]
     if part_field == '1':
         part_field.append("F2+F3")
     elif part_field == '2':
