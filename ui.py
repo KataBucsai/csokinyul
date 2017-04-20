@@ -46,5 +46,12 @@ def get_inputs(list_labels, title):
         inputs = []
         for items in list_labels:
             inputs.append(input(items + ": "))
-
         return inputs
+
+
+# This function needs to print an error message. (example: Error: @message)
+#
+# @message: string - the error message
+def print_error_message(message):
+
+    print("Error: " + str(message))
