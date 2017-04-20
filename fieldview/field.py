@@ -38,13 +38,6 @@ def start_module():
                "Extra: Lowest priced item ID",
                "Extra: Items sold between two dates"]
 
-    dates_table = ["From Month",
-                   "From Day",
-                   "From Year",
-                   "To Month",
-                   "To Day",
-                   "To Year"]
-
     while True:
         os.system("clear")
         ui.print_menu("Selling", options, "Back to Main menu")
