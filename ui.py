@@ -30,8 +30,8 @@ def print_menu(title, list_options, exit_message):  # ready to use
     numbers = [str(i+1) for i in range(len(list_options))]
     print(title + ":")
     for pos, option in enumerate(list_options):
-        print("(" + numbers[pos] + ")" + option)
-    print("(0)" + exit_message)
+        print("(" + numbers[pos] + ") " + option)
+    print("(0) " + exit_message)
 
 
 # This function needs to print result of the special functions
@@ -64,11 +64,12 @@ def get_inputs(list_labels, title):
 #
 # @table: list of lists - the table to print out
 # @title_list: list of strings - the head of the table
-def print_field(field, size):
+def print_field(field, size, season_date):
     os.system('clear')
     print_first_row = []
     print_rows = []
     print("\n")
+    print("Season " + season_date + "\n")
     for i in range(size):
         for j in range(size):
             if j == 0:
