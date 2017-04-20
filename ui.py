@@ -1,5 +1,6 @@
 from terminaltables import AsciiTable
 import os
+from textwrap import wrap
 from importlib.machinery import SourceFileLoader
 current_file_path = os.path.dirname(os.path.abspath(__file__))
 # general module
@@ -8,12 +9,16 @@ general = SourceFileLoader("general", current_file_path + "/general.py").load_mo
 
 # This function needs to print outputs like this:
 #
-# @table: list of lists - the table to print out
-# @title_list: list of strings - the head of the table
-def print_table(table):
-    for item in table:
-        table_items.append(item)
-    table = AsciiTable(table_items)
+# @table_it: list of lists - the table to print out with title
+def print_table(data_table):
+    data_table = [data[1:] for data in data_table]
+    max_width = len(data_table[0][0])  # reduce the width of the columns
+    for i, row in enumerate(data_table):
+        for k, col in enumerate(row):
+            if len(col) > max_width:
+                wrapped_string = '\n'.join(wrap(col, max_width))
+                row[k] = wrapped_string
+    table = AsciiTable(data_table)
     table.inner_heading_row_border = True
     table.inner_row_border = True
     print(table.table)
