@@ -21,7 +21,6 @@ def get_datatable_from_file(file_name):
             print("Empty file")
             return None
     except OSError:
-        print("File not found")
         return 1
 
 

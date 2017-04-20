@@ -28,7 +28,7 @@ def start_module(season):
     actualseason_file_name = current_file_path + "/actualseason.csv"
     actual_table = data_read_write.get_datatable_from_file(actualseason_file_name)
 
-    if not actual_table and season == "new":  # first season here
+    if not actual_table:  # first season here
         actual_table = new_season(actual_table)
     if season == "new":
         # future: export actual season to history and clear it 
@@ -44,13 +44,15 @@ def start_module(season):
 # @season list of list
 def new_season(season_table):
     field = []
-    if not season:
+    season_date = ""
+    field_size = ""
+    if not season_table:
         ui.print_result("", "This is your first season")
         season_date = ui.get_inputs(["Year", "Month"], "What is the year and the month of your first season?")
         field.append("".join(date for date in season_date))
         field_size = ui.get_inputs(["Field Width (m)", "Field Length (m)"], "Insert your Farm size")
         field.append(",".join([int(field_size[0]) * int(field_size[1]), field_size[0], field_size[1]]))
-    ui.print_field(field, season_date)
+    ui.print_field(field, 4, season_date[0])
     return field
 
 
