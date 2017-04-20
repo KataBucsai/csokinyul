@@ -19,9 +19,9 @@ def get_datatable_from_file(file_name):
             return datatable
         else:
             print("Empty file")
-            return None
+            return 0
     except OSError:
-        return 1
+        return 0
 
 
 # write a @table into a file
