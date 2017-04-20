@@ -10,6 +10,7 @@
 # importing everything you need
 import sys
 import os
+import main
 from importlib.machinery import SourceFileLoader
 current_file_path = os.path.dirname(os.path.abspath(__file__))
 # User interface module
@@ -30,13 +31,15 @@ def start_module(season):
 
     if not actual_table:  # first season here
         actual_table = new_season(actual_table)
-    if season == "new":
-        # future: export actual season to history and clear it 
-        actual_table = new_season(actual_table)
-        data_read_write.write_datatable_to_file("actualseason.csv", actual_table)
-    if actual_table or season == "actual":
-        actual_table = actual_season(actual_table)
-    return
+    while actual_table:
+        if season == "new":
+            # future: export actual season to history and clear it
+            actual_table = new_season(actual_table)
+            data_read_write.write_datatable_to_file("actualseason.csv", actual_table)
+        elif actual_table or season == "actual":
+            actual_table = actual_season(actual_table)
+        else:
+            main.main()
 
 
 # handle new season
@@ -49,9 +52,9 @@ def new_season(season_table):
     if not season_table:
         ui.print_result("", "This is your first season")
         season_date = ui.get_inputs(["Year", "Month"], "What is the year and the month of your first season?")
-        field.append("".join(date for date in season_date))
-        field_size = ui.get_inputs(["Field Width (m)", "Field Length (m)"], "Insert your Farm size")
-        field.append(",".join([int(field_size[0]) * int(field_size[1]), field_size[0], field_size[1]]))
+        field.append("".join([date for date in season_date]))
+        field_size = ui.get_inputs(["Field size (m)"], "Insert your Farm size")
+        field.append(",".join([str(int(field_size[0]) ** 2), field_size[0]]))
     ui.print_field(field, 4, season_date[0])
     return field
 
