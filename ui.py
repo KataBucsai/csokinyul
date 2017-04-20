@@ -1,5 +1,9 @@
 from terminaltables import AsciiTable
 import os
+from importlib.machinery import SourceFileLoader
+current_file_path = os.path.dirname(os.path.abspath(__file__))
+# general module
+general = SourceFileLoader("general", current_file_path + "/general.py").load_module()
 
 
 # This function needs to print outputs like this:
@@ -67,6 +71,7 @@ def get_inputs(list_labels, title):
 def print_field(field, size, season_date):
     os.system('clear')
     field_spot = [[field[i][1], field[i+1][1]] for i in range(1, len(field), size)]
+    len_row = sum(general.get_table_elements_length(field_spot))
     print_first_row = []
     print_rows = []
     print("\n")
@@ -77,10 +82,10 @@ def print_field(field, size, season_date):
                 print_rows.append("  " + field_spot[i][j])
             else:
                 print_rows.append(" | " + field_spot[i][j])
-        print(" %s" % (i + 1) + "".join(print_rows))
+        print("".join(print_rows))
         print_rows = []
         if i <= (size-2):
-            print("   " + "-" * (size * 4 - 1))
+            print("  " + "-" * (len_row + size*2))
 
 
 # This function needs to print an error message. (example: Error: @message)
