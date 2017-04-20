@@ -33,6 +33,16 @@ def print_menu(title, list_options, exit_message):  # ready to use
     print("(0)" + exit_message)
 
 
+# This function needs to print result of the special functions
+#
+# @result: string or list or dictionary - result of the special function
+# @label: string - label of the result
+def print_result(result, label):
+    print("\n" + label)
+    print(result)
+    print("\n")
+
+    
 # This function gets a list of inputs from the user by the terminal
 #
 # @list_labels: list of strings - the labels of the inputs
