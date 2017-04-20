@@ -26,7 +26,7 @@ data_read_write = SourceFileLoader("data_read_write", current_file_path + "/../d
 #
 def start_module(season):
     actualseason_file_name = current_file_path + "/actualseason.csv"
-    actual_table = data_manager.get_table_from_file(file_name)
+    actual_table = data_read_write.get_datatable_from_file(actualseason_file_name)
 
     if not actual_table and season == "new":  # first season here
         actual_table = new_season(actual_table)
