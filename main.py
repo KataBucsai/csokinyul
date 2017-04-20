@@ -19,9 +19,11 @@ menu = SourceFileLoader("menu", current_file_path + "/menu.py").load_module()
 
 def main():
     while True:
-        menu.handle_menu()
+        options_list = ["Actual season", "New season", "Show plants"]
+        menu.handle_menu("Main menu", options_list, "Exit program")
         try:
-            menu.choose()
+            menu_list = ["season.start_module(actual)", "season.start_module(new)"]
+            menu.choose(menu_list)
         except KeyError as err:
             ui.print_error_message(err)
 
