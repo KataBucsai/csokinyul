@@ -52,10 +52,11 @@ def new_season(season_table):
     if not season_table:
         ui.print_result("", "This is your first season")
         season_date = ui.get_inputs(["Year", "Month"], "What is the year and the month of your first season?")
-        field.append("".join([date for date in season_date]))
         field_size = ui.get_inputs(["Field size (m)"], "Insert your Farm size")
-        field.append(",".join([str(int(field_size[0]) ** 2), field_size[0]]))
-    ui.print_field(field, 4, season_date[0])
+        field.append(["".join([date for date in season_date]), ",".join([str(int(field_size[0]) ** 2), field_size[0]])])
+        for i in range(4):
+            field.append([0, 0, 0])
+    ui.print_field(field, 2, season_date[0])
     return field
 
 
