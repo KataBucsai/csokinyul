@@ -1,4 +1,5 @@
 from terminaltables import AsciiTable
+import os
 
 
 # This function needs to print outputs like this:
@@ -63,16 +64,21 @@ def get_inputs(list_labels, title):
 #
 # @table: list of lists - the table to print out
 # @title_list: list of strings - the head of the table
-def print_field(table, title_list):
-    table_items = [title_list]
-    for item in table:
-        table_items.append(item)
-    table = AsciiTable(table_items)
-    table.inner_heading_row_border = True
-    table.inner_row_border = True
-    table.padding_left = 10
-    table.padding_right = 10
-    print(table.table)
+def print_field(field, size):
+    os.system('clear')
+    print_first_row = []
+    print_rows = []
+    print("\n")
+    for i in range(size):
+        for j in range(size):
+            if j == 0:
+                print_rows.append("  " + field[i][j])
+            else:
+                print_rows.append(" | " + field[i][j])
+        print(" %s" % (i + 1) + "".join(print_rows))
+        print_rows = []
+        if i <= (size-2):
+            print("   " + "-" * (size * 4 - 1))
 
 
 # This function needs to print an error message. (example: Error: @message)
