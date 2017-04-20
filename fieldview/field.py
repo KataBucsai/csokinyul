@@ -1,14 +1,4 @@
-# data structure:
-# id: string
-#     Unique and random generated (at least 2 special char()expect: ';'), 2 number, 2 lower and 2 upper case letter)
-# title: string
-# price: number (the actual selling price in $)
-# month: number
-# day: number
-# year: number
-# month,year and day combined gives the date the purchase was made
-
-
+'''
 # importing everything you need
 import sys
 import os
@@ -76,3 +66,4 @@ def show_table(table):
     os.system("clear")
     title_list = ["ID", "Title", "Price", "Month", "Day", "Year"]
     return ui.print_table(table, title_list)
+'''
