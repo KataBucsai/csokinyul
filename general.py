@@ -2,7 +2,7 @@
 import ui
 import sys
 
-
+# options will be function calls?
 # @option_list a list of string
 def choose(option_list):
     inputs = ui.get_inputs(["Please chose an options"], "")

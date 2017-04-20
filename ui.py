@@ -31,3 +31,20 @@ def print_menu(title, list_options, exit_message):  # ready to use
     for pos, option in enumerate(list_options):
         print("(" + numbers[pos] + ")" + option)
     print("(0)" + exit_message)
+
+
+# This function gets a list of inputs from the user by the terminal
+#
+# @list_labels: list of strings - the labels of the inputs
+# @title: string - title of the "input section"
+# @inputs: list of string - list of the received values from the user
+def get_inputs(list_labels, title):
+    print(title)
+    if len(list_labels) < 2:
+        return input(list_labels[0] + ": ")
+    else:
+        inputs = []
+        for items in list_labels:
+            inputs.append(input(items + ": "))
+
+        return inputs
