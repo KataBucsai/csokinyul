@@ -1,6 +1,5 @@
-# this is the main part
-import sys
 import os
+import sys
 from importlib.machinery import SourceFileLoader
 current_file_path = os.path.dirname(os.path.abspath(__file__))
 # User interface module
@@ -12,19 +11,21 @@ season = SourceFileLoader("season", current_file_path + "/seasons/season.py").lo
 # General module
 general = SourceFileLoader("general", current_file_path + "/general.py").load_module() 
 # Data_read_write module
-data_read_write = SourceFileLoader("data_read_write", current_file_path + "/data_read_write.py").load_module()
-# Menu module
-menu = SourceFileLoader("menu", current_file_path + "/menu.py").load_module() 
+data_read_write = SourceFileLoader("data_read_write", current_file_path + "/data_read_write.py").load_module() 
 
 
-def main():
-    while True:
-        menu.handle_menu()
-        try:
-            menu.choose()
-        except KeyError as err:
-            ui.print_error_message(err)
+def handle_menu(title, options_list, exit_message):
+    os.system("clear")
+    ui.print_menu(title, options_list, exit_message)
 
 
-if __name__ == '__main__':
-    main()
+def choose(option_list):
+    inputs = ui.get_inputs(["Please choose an options"], "")
+    option = inputs[0]
+    for i, opts in enumerate(option_list):
+        if option == str(i+1):
+            opts()
+    if option == "0":
+        sys.exit(0)
+    else:
+        raise KeyError("There is no such option.")
