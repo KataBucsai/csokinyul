@@ -1,4 +1,4 @@
-from terminaltables import AsciiTable
+from terminaltables import SingleTable
 import os
 from textwrap import wrap
 from importlib.machinery import SourceFileLoader
@@ -18,7 +18,7 @@ def print_table(data_table):
             if len(col) > max_width:
                 wrapped_string = '\n'.join(wrap(col, max_width))
                 row[k] = wrapped_string
-    table = AsciiTable(data_table)
+    table = SingleTable(data_table)
     table.inner_heading_row_border = True
     table.inner_row_border = True
     print(table.table)
@@ -73,8 +73,9 @@ def get_inputs(list_labels, title):
 # @title_list: list of strings - the head of the table
 def print_field(field, size, season_date):
     os.system('clear')
-    field_spot = [[field[i][1], field[i+1][1]] for i in range(1, len(field), size)]
-    len_row = sum(general.get_table_elements_length(field_spot))
+    field_spot = [[field[i][0], field[i+1][0]] for i in range(1, len(field), size)]
+    max_len_by_col = general.get_table_elements_length(field_spot)
+    len_row = sum(max_len_by_col)
     print_first_row = []
     print_rows = []
     print("\n")
@@ -82,9 +83,9 @@ def print_field(field, size, season_date):
     for i in range(size):
         for j in range(size):
             if j == 0:
-                print_rows.append("  " + field_spot[i][j])
+                print_rows.append("  " + "{:{align}{wd}}".format(field_spot[i][j], align='^', wd=max_len_by_col[j]))
             else:
-                print_rows.append(" | " + field_spot[i][j])
+                print_rows.append(" | " + "{:{align}{wd}}".format(field_spot[i][j], align='^', wd=max_len_by_col[j]))
         print("".join(print_rows))
         print_rows = []
         if i <= (size-2):
