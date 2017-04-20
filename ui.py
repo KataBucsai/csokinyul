@@ -66,6 +66,7 @@ def get_inputs(list_labels, title):
 # @title_list: list of strings - the head of the table
 def print_field(field, size, season_date):
     os.system('clear')
+    field_spot = [[field[i], field[i+1]] for i in range(1, len(field), size)]
     print_first_row = []
     print_rows = []
     print("\n")
@@ -73,9 +74,9 @@ def print_field(field, size, season_date):
     for i in range(size):
         for j in range(size):
             if j == 0:
-                print_rows.append("  " + field[i][j])
+                print_rows.append("  " + field_spot[i][j])
             else:
-                print_rows.append(" | " + field[i][j])
+                print_rows.append(" | " + field_spot[i][j])
         print(" %s" % (i + 1) + "".join(print_rows))
         print_rows = []
         if i <= (size-2):
