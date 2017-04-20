@@ -3,6 +3,7 @@ import sys
 import os
 from importlib.machinery import SourceFileLoader
 current_file_path = os.path.dirname(os.path.abspath(__file__))
+print(current_file_path)
 # User interface module
 ui = SourceFileLoader("ui", current_file_path + "/ui.py").load_module()
 # Fieldview module

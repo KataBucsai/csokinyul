@@ -16,14 +16,8 @@ current_file_path = os.path.dirname(os.path.abspath(__file__))
 ui = SourceFileLoader("ui", current_file_path + "/../ui.py").load_module()
 # Fieldview module
 field = SourceFileLoader("field", current_file_path + "/../fieldview/field.py").load_module()
-# Mai module
-main = SourceFileLoader("main", current_file_path + "/../main.py").load_module() 
-# General module
-general = SourceFileLoader("general", current_file_path + "/../general.py").load_module() 
 # Data_read_write module
 data_read_write = SourceFileLoader("data_read_write", current_file_path + "/../data_read_write.py").load_module()
-# Menu module
-menu = SourceFileLoader("menu", current_file_path + "/../menu.py").load_module()
 
 
 # start this module by a module menu like the main menu
@@ -42,6 +36,7 @@ def start_module(season):
         data_read_write.write_datatable_to_file("actualseason.csv", actual_table)
     if actual_table or season == "actual":
         actual_table = actual_season(actual_table)
+    return
 
 
 # handle new season
