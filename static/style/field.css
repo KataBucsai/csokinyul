@@ -1,0 +1,41 @@
+.field_grid {
+    text-align: center;
+    display: grid;
+    margin:0 auto;
+}
+
+.field_grid span{
+    margin: 0 auto;
+}
+
+.inline {
+    display: inline-block;
+}
+
+container {
+    float: right;
+}
+
+container .cell {
+    margin: 0px 20px;
+}
+
+.color0 {
+    background-color: #4cca4d;
+}
+
+.color1 {
+    background-color: orange;
+}
+
+.color2 {
+    background-color: purple;
+}
+
+.color3 {
+    background-color: red;
+}
+
+.color4 {
+    background-color: grey;
+}
